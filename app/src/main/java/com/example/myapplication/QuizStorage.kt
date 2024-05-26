@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -28,6 +29,8 @@ class QuizStorage : AppCompatActivity(),View.OnClickListener {
     private lateinit var progressBar: ProgressBar
     private lateinit var tv_progress: TextView
     private lateinit var tv_question: TextView
+    private lateinit var btn_back : Button
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         //This call the parent constructor
         super.onCreate(savedInstanceState)
@@ -46,8 +49,13 @@ class QuizStorage : AppCompatActivity(),View.OnClickListener {
         progressBar = findViewById<ProgressBar>(R.id.progressBar)
         tv_progress = findViewById<TextView>(R.id.tv_progress)
         tv_question = findViewById<TextView>(R.id.tv_question)
+        btn_back = findViewById<Button>(R.id.btn_back)
         mQuestionsList = Constants.getQuestions()
 
+        btn_back.setOnClickListener {
+            startActivity((Intent(this@QuizStorage,MainActivity::class.java)))
+            finish()
+        }
         setQuestion()
 
         tv_option_one.setOnClickListener(this)
